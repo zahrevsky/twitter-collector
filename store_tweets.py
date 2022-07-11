@@ -20,7 +20,13 @@ def run():
 	mongo = MongoClient("mongodb://127.0.0.1:27017/")
 	db = mongo['twitter-collector']
 
-	storer = MongoStorer(db, os.environ['API_TOKEN'])
+	api_token = {
+		'stage': os.environ['TWCOL_API_TOKEN_STAGING'],
+		'dev': os.environ['TWCOL_API_TOKEN_DEV'],
+		None: 'TWCOL_API_TOKEN_DEV'
+	}[os.getenv('TWCOL_ENV', None)]
+
+	storer = MongoStorer(db, api_token)
 	storer.filter()
 
 
