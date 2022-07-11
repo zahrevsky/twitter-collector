@@ -27,7 +27,7 @@ def run():
 	}[os.getenv('TWCOL_ENV', None)]
 
 	storer = MongoStorer(db, api_token)
-	storer.filter()
+	storer.filter(tweet_fields=['created_at'])
 
 
 if __name__ == '__main__':
