@@ -3,6 +3,7 @@ import os
 import tweepy
 
 from db import tweet_storage
+from env import env
 
 
 class MongoStorer(tweepy.StreamingClient):
@@ -16,16 +17,8 @@ class MongoStorer(tweepy.StreamingClient):
         self._db['tweets'].insert_one(dict(tweet))
 
 
-def api_token():
-    return {
-        'stage': os.environ['TWCOL_API_TOKEN_STAGING'],
-        'dev': os.environ['TWCOL_API_TOKEN_DEV'],
-        None: 'TWCOL_API_TOKEN_DEV'
-    }[os.getenv('TWCOL_ENV', None)]
-
-
 def store_tweets():
-    storer = MongoStorer(tweet_storage(), api_token())
+    storer = MongoStorer(tweet_storage(), env('API_TOKEN'))
     storer.filter(tweet_fields=['created_at'])
 
 
