@@ -14,12 +14,13 @@ class MongoStorer(tweepy.StreamingClient):
 
     def on_tweet(self, tweet: tweepy.Tweet):
         print(f"tweet received: {tweet.text}")
-        self._db['tweets'].insert_one(dict(tweet))
+        strd_id = self._db['tweets'].insert_one(dict(tweet)).inserted_id
+        print(f"inserted obj with id {strd_id}")
 
 
 def store_tweets():
     storer = MongoStorer(tweet_storage(), env('API_TOKEN'))
-    storer.filter(tweet_fields=['created_at'])
+    storer.filter(tweet_fields=['created_at', 'author_id'])
 
 
 if __name__ == '__main__':
