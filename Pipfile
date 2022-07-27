@@ -8,6 +8,8 @@ ipython = "*"
 fastapi = "*"
 tweepy = "*"
 pymongo = "*"
+tqdm = "*"
+pandas = "*"
 
 [dev-packages]
 
@@ -15,5 +17,5 @@ pymongo = "*"
 python_version = "3.9"
 
 [packages.uvicorn]
-extras = ["standard"]
+extras = [ "standard",]
 version = "*"
