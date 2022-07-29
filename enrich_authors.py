@@ -7,7 +7,7 @@ from env import env
 
 def enrich_authors():
     strg = tweet_storage()
-    client = Client(env('API_TOKEN'))
+    client = Client(env('API_TOKEN'), wait_on_rate_limit=True)
 
     already_dumped = 0
     unretrievable = 0
@@ -18,8 +18,8 @@ def enrich_authors():
             try:
                 author = client.get_tweet(
                     tweet['id'],
-                    tweet_fields=['author_id']).data['author_id'
-                ]
+                    tweet_fields=['author_id']
+                ).data['author_id']
                 strg['tweets'].update_one(
                     {'id': tweet['id']}, 
                     {'$set': {'author_id': author}}
