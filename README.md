@@ -1,7 +1,7 @@
 ### Crypto-twitter — statistics of mentions of common cryptocurrencies in tweets of selected infulencers<br><sup>Results are available at https://storage.zahrevsky.com/twitter-collector/tweets-dumped.json<br/></sup>
 
 Using Twitter API, Crypto-twitter monitors 142 crypto influencers, that were manually selected. In tweets of those influencers, mentions of currencies are counted per given time period. Result looks like this:
-![Statistic screenshot](https://storage.zahrevsky.com/stats-example.png)
+![Statistic screenshot](https://storage.zahrevsky.com/twitter-collector/stats-example.png)
 
 **Note** Dumped results are in JSON format and should be post-processed to recieve an image as above.
 
