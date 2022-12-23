@@ -17,3 +17,4 @@ def dump_tweets(filename):
 
 if __name__ == '__main__':
     dump_tweets(env('DUMP_PATH'))
+
